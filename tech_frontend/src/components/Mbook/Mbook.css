@@ -1,0 +1,115 @@
+
+/* Container for message and form */
+.mbook-container {
+    display: flex;
+    flex-wrap: nowrap; /* Ensure items don't wrap */
+    gap: 20px; /* Space between the items */
+    margin-top: 20px; /* Space at the top of the container */
+}
+
+/* Message container styling */
+.message-container {
+    flex: 1; /* Allows it to grow and shrink as needed */
+    max-width: 450px;
+    margin-top: 100px;
+    margin-left: 100px; /* Remove top margin if any */
+}
+
+/* Typing message container */
+#typingContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 100%;
+    max-width: 400px;
+}
+
+/* Typing message styling */
+.typing-message {
+    font-size: 20px;
+    font-family: 'Times New Roman', Times, serif;
+    color: #333;
+    white-space: pre-wrap; /* Preserves line breaks and spaces */
+    animation: blink-caret 1s step-end infinite;
+  }
+  
+  @keyframes blink-caret {
+    from, to { border-color: transparent; }
+    50% { border-color: orange; }
+  }
+  
+
+/* Mehndi image styling */
+.mehndi-image {
+    margin-top: 40px;
+    text-align: center;
+
+}
+
+.mehndi-image img {
+    width: 80%;
+    border-radius: 8px;
+    max-height: 250px;
+    object-fit: cover;
+}
+
+/* Form container styling */
+.form-container {
+    flex: 1; /* Allows it to grow and shrink as needed */
+    background: #fff;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 450px;
+    margin-left:200px;
+    margin-top: 40px;
+}
+
+/* Heading styling */
+h2 {
+    text-align: center;
+    margin: 10px 0 15px;
+    color: #333;
+}
+
+/* Form group styling */
+.form-group {
+    margin-bottom: 10px;
+}
+
+label {
+    display: block;
+    margin-bottom: 3px;
+    color: #555;
+}
+
+input,
+select,
+.btncal {
+    width: 100%;
+    padding: 8px;
+    margin-top: 3px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+
+.btncal {
+    background-color: #55ad9b;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btncal:hover {
+    background-color: #55ad9b;
+}
+
+/* Total price styling */
+.total-price {
+    font-size: 16px;
+    margin-top: 10px;
+    text-align: center;
+    color: #333;
+}

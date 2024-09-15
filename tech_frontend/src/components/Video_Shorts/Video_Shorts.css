@@ -1,0 +1,104 @@
+.videos-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 20px;
+}
+
+.video-card {
+    max-width: 100%;
+    background-color: #D8EFD3;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.2s ease, z-index 0.2s ease;
+}
+
+video {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.video-card:hover {
+    z-index: 20;
+    transform: scale(1.12);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+/* For laptops and tablets */
+@media (min-width: 769px) {
+    .interaction {
+        display: flex;
+        flex-direction: row;
+        /* Align buttons horizontally */
+        justify-content: center;
+        /* Center buttons below video */
+        position: relative;
+        margin-top: 10px;
+        /* Space below video */
+    }
+
+    button {
+        background: none;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        color: #000;
+        /* Adjust color for visibility on light background */
+        font-weight: bold;
+        transition: color 0.3s ease;
+        margin: 0 10px;
+        /* Space between buttons */
+    }
+
+    .ptag {
+        margin-left: 5px;
+        color: #000;
+        /* Adjust color for visibility */
+    }
+}
+
+/* For mobile screens */
+@media (max-width: 768px) {
+    .videos-container {
+        grid-template-columns: repeat(1, 1fr);
+        padding: 0;
+    }
+
+    .video-card {
+        max-width: 100%;
+        height: 100vh;
+        border-radius: 0;
+        position: relative;
+    }
+
+    video {
+        height: 100vh;
+        object-fit: cover;
+    }
+
+    /* Ensure icons are displayed on the right side for mobile */
+    .interaction {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    button {
+        font-size: 24px;
+        /* Increase icon size for better visibility */
+        color: #fff;
+        /* White icons for better contrast */
+    }
+
+    .interaction button .ptag {
+        display: none;
+        /* Hide number counts next to the icon on mobile for simplicity */
+    }
+}

@@ -1,0 +1,130 @@
+/* Created by Tivotal */
+
+/* Google Fonts(Poppins) */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+* {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* background-color: #D8EFD3; */
+  /* background-image:url("https://images.unsplash.com/photo-1660211983492-9df0c82ba9ae?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"); */
+  background-image:url("https://images.unsplash.com/photo-1583681758134-3ea2709d2e23?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHF1b3RhdGlvbiUyMG9uJTIwdGFsZW50fGVufDB8fDB8fHww");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.wrapper {
+  width: 100%;
+  max-width: 650px;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 20px 30px;
+  margin: 20px;
+  border-radius: 10px;
+  box-shadow: inset -2px 2px 2px #fff;
+  background: linear-gradient(45deg, #55AD9B, rgb(160, 63, 79));
+
+}
+
+.wrapper .title {
+  font-size: 25px;
+  font-weight: 600;
+  text-align: center;
+  padding-bottom: 5px;
+  color: #fff;
+  text-shadow: 2px 2px 2px #222;
+  border-bottom: 1px solid #fff;
+}
+
+.wrapper .info {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding-top: 20px;
+}
+
+.input-box {
+  display: flex;
+  flex-wrap: wrap;
+  width: 50%;
+  padding-bottom: 10px;
+}
+
+.input-box:nth-child(2n) {
+  justify-content: end;
+}
+
+.input-box label {
+  width: 95%;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 400;
+  margin-bottom: 5px;
+}
+
+.input-box input,select {
+  height: 40px;
+  width: 95%;
+  border-radius: 7px;
+  outline: none;
+  border: none;
+  padding: 0 10px;
+}
+
+
+.btn input {
+  display: block;
+  width: 100%;
+  margin-top: 25px;
+  font-size: 18px;
+  padding: 8px;
+  border: none;
+  border-radius: 3px;
+  color: #fff;
+  background: #4dc98b;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn input:hover {
+  background: #0eca95c5;
+}
+#textarea{
+  border-radius: 10px;
+}
+@media (max-width: 550px) {
+  .wrapper {
+    min-width: 280px;
+  }
+
+  .input-box {
+    margin-bottom: 10px;
+    width: 100%;
+  }
+
+  .input-box:nth-child(2n) {
+    justify-content: space-between;
+  }
+
+  .input-box input {
+    width: 100%;
+  }
+
+  .info {
+    max-height: 370px;
+    overflow: auto;
+  }
+
+  .info::-webkit-scrollbar {
+    width: 0;
+  }
+
+}
