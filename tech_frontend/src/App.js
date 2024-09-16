@@ -9,6 +9,7 @@ import Services from './components/Services/Services';
 // import Shorts from './components/Shorts/Shorts';
 import Video_Shorts from './components/Video_Shorts/Video_Shorts';
 import ServiceDetails from './components/ServiceDetails/ServiceDetails';
+import Profile from './components/Profile/Profile';
 
 
 function App() {
@@ -24,7 +25,9 @@ function App() {
         {/* <Route path="/shorts" element={<Shorts />} /> */}
         <Route path="/shorts" element={<Video_Shorts />} />
 
-        <Route path="/service/:name" element={<ServiceDetails />} /> {/* Name-based routing */}
+        <Route path="/service/:name" element={<ServiceDetails />} />
+        <Route path="/profile" element={<Profile />} />
+        {/* Name-based routing */}
 
       </Routes>
     </>

@@ -75,7 +75,8 @@ const ServiceDetails = () => {
                   key={videoIndex} 
                   controls 
                   src={`http://localhost:5000/uploads/${video}`} 
-                  style={{ width: '400px', margin: '10px', height: 'auto' }}>
+                  style={{ width: '400px', margin: '10px', height: 'auto' }} 
+                >
                   Your browser does not support the video tag.
                 </video>
               ))
@@ -87,7 +88,15 @@ const ServiceDetails = () => {
           <p>{service.description}</p>
 
           {/* Book Service Button */}
-          <Link to={`/booked-services`} state={{ service }}>
+          <Link 
+            to={`/booked-services`} 
+            state={{ 
+              serviceName: name, 
+              artistName: service.fullName, 
+              demoImages: service.demoImages, 
+              email: service.email 
+            }}
+          >
             <button className="btncal">Book Service</button>
           </Link>
         </div>

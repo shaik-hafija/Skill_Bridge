@@ -3,7 +3,7 @@ const app = express()
 const multer = require('multer');
 const path = require('path');
 const jwt = require('jsonwebtoken')
-const cookie = require('cookie-parser')
+const cookieParser = require('cookie-parser');
 const cors = require('cors')
 const bodyParser = require('body-parser')
 const mongoose = require("mongoose");
@@ -24,10 +24,13 @@ db.on('error', (err) => {
 db.once('open', () => {
     console.log('Connected successfully to MongoDB');
 });
+app.use(cookieParser()); // This should be before your routes
 
 app.use(express.json())
+
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }))
+
 
 app.get('/', (req, res) => {
     // console.log("Hi, server is running ");
@@ -165,7 +168,8 @@ app.post('/ulogin', async (req, res) => {
             // Set the cookie with the token
             res.cookie("jwt", check.token, {
                 maxAge: 700000,
-                httpOnly: true
+                httpOnly: true,
+                secure:false
             });
             return res.status(201).send({ message: "Successfully logged in" });
         } else {
@@ -187,7 +191,85 @@ app.get('/get_videos', async (req, res) => {
         res.status(500).json({ message: 'Error fetching video data' });
     }
 });
+// Edit profile route
+app.get('/get_user_details', async (req, res) => {
+    console.log('Cookies:', req.cookies);
+    const token = req.cookies.jwt;
+    if (!token) {
+        return res.status(401).send('Unauthorized');
+    }
 
+    const decoded = jwt.verify(token, "ThisisTechTalentConnectStartUp");
+
+    // Fetch user details based on login type
+    if (decoded.loginType === 'User Login') {
+        try {
+            const user = await userReg.findOne({ email: decoded.email });
+            if (!user) {
+                return res.status(404).send('User not found');
+            }
+            res.status(200).send(user);
+        } catch (error) {
+            console.error('Error fetching user details:', error);
+            res.status(500).send('Error fetching user details');
+        }
+    } else if (decoded.loginType === 'professional Login') {
+        try {
+            const profession = await professionReg.findOne({ email: decoded.email });
+            if (!profession) {
+                return res.status(404).send('Profession not found');
+            }
+            res.status(200).send(profession);
+        } catch (error) {
+            console.error('Error fetching profession details:', error);
+            res.status(500).send('Error fetching profession details');
+        }
+    } else {
+        res.status(400).send('Invalid login type');
+    }
+});
+
+// Edit Profile
+app.put('/edit_profile', async (req, res) => {
+    const token = req.cookies.jwt;
+    if (!token) {
+        return res.status(401).send('Unauthorized');
+    }
+
+    const decoded = jwt.verify(token, "ThisisTechTalentConnectStartUp");
+    const { name, phone_number, InterestedAreas, email } = req.body;
+
+    try {
+        if (decoded.loginType === 'user') {
+            const user = await userReg.findOneAndUpdate(
+                { email: decoded.email },
+                { name, phone_number, InterestedAreas, email },
+                { new: true }
+            );
+            if (!user) {
+                return res.status(404).send('User not found');
+            }
+            res.status(200).send({ message: 'Profile updated successfully', user });
+        } else if (decoded.loginType === 'profession') {
+            const profession = await professionReg.findOneAndUpdate(
+                { email: decoded.email },
+                { name, phone_number, InterestedAreas, email },
+                { new: true }
+            );
+            if (!profession) {
+                return res.status(404).send('Profession not found');
+            }
+            res.status(200).send({ message: 'Profile updated successfully', profession });
+        } else {
+            res.status(400).send('Invalid login type');
+        }
+    } catch (error) {
+        console.error('Error updating profile:', error);
+        res.status(500).send('Error updating profile');
+    }
+});
+
+  
 app.post('/Plogin', async (req, res) => {
     const { email, password } = req.body;
     console.log(email,password);
@@ -202,7 +284,8 @@ app.post('/Plogin', async (req, res) => {
             // Set the cookie with the token
             res.cookie("jwt", check.token, {
                 maxAge: 700000,
-                httpOnly: true
+                httpOnly: true,
+                secure:false
             });
             return res.status(201).send({ message: "Successfully logged in" });
         } else {

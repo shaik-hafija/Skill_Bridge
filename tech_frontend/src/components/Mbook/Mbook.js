@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Mbook.css'; 
 import { useLocation } from 'react-router-dom';
+import axios from 'axios';
 
 const Mbook = () => {
   const location = useLocation();
-  const { serviceName, artistName, demoImages } = location.state || {}; 
+  const { serviceName, artistName, demoImages, email } = location.state || {}; // Get email from location.state
 
   const [handType, setHandType] = useState('half');
   const [numberOfHands, setNumberOfHands] = useState(1);
@@ -13,6 +14,23 @@ const Mbook = () => {
   const [startTime, setStartTime] = useState('');
   const [endTime, setEndTime] = useState('');
   const [userEmail, setUserEmail] = useState('');
+  const [profData, setProfData] = useState(null); // State to store profReg data
+
+  useEffect(() => {
+    // Fetch professional details based on the email
+    const fetchProfData = async () => {
+      try {
+        const response = await axios.get(`http://localhost:5000/profReg/${email}`);
+        setProfData(response.data);
+      } catch (error) {
+        console.error('Error fetching professional data:', error);
+      }
+    };
+
+    if (email) {
+      fetchProfData();
+    }
+  }, [email]);
 
   const calculateTotal = () => {
     const price = handType === 'half' ? 500 : 1000;
@@ -52,10 +70,18 @@ const Mbook = () => {
   };
 
   return (
+    
     <div className="mbook-container">
-      <h1>Book {serviceName} Service by {artistName}</h1>
-      
-      <div className="mehndi-image">
+      <h1>Book {serviceName} 
+        <br/>
+      </h1>
+      <div><p>Service By  {artistName}<br/>
+        Email: {email}</p></div>
+
+      {/* Display professional details if available */}
+ 
+
+      {/* <div className="mehndi-image">
         {demoImages && demoImages.length > 0 ? (
           demoImages.map((image, index) => (
             <img
@@ -68,7 +94,7 @@ const Mbook = () => {
         ) : (
           <p>No images available</p>
         )}
-      </div>
+      </div> */}
 
       <div className="form-container">
         <form>

@@ -3,13 +3,12 @@
     justify-content: space-between;
     align-items: center;
     padding: 8px;
-    background-color: #55AD9B;
-    color: #F19ED2;
+    background-color: #55AD9B; /* Pastel green for navbar */
+    color: white;
 }
 
 .navbar .logo h1 {
     color: white;
-   
 }
 
 .nav-right {
@@ -34,7 +33,6 @@
     padding: 8px 16px;
     border-radius: 4px;
     transition: background 0.3s ease;
-    font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 .nav-links a:hover {
@@ -116,7 +114,7 @@
 
 .cards-section {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr); /* Change to 2-column layout */
     gap: 20px;
     margin-bottom: 50px;
 }
@@ -127,6 +125,11 @@
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: scale(1.05);
 }
 
 .card h2 {
@@ -139,38 +142,27 @@
     color: #666;
 }
 
-.internship {
-    background-color: #ccf2e2;
+.find-services {
+    background-color: #e0f7f0;
 }
 
-.learn {
-    background-color: #ffe0f0;
+.offer-services {
+    background-color: #fbe4f0;
 }
 
-.jobs {
-    background-color: #e6f3ff;
+.grow {
+    background-color: #ecf7ff;
 }
 
-.practice {
-    background-color: #ececff;
-}
-
-.compete {
-    background-color: #fff4d9;
-}
-
-.mentorship {
-    background-color: #fff0e0;
-}
-
-.card:hover {
-    transform: scale(1.1);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+.receive-bookings {
+    background-color: #f9f5ff;
 }
 
 .button-divide {
     display: flex;
     gap: 20px;
+    justify-content: center;
+    margin-top: 20px;
 }
 
 button {
@@ -182,7 +174,6 @@ button {
     border: none;
     border-radius: 30px;
     cursor: pointer;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
